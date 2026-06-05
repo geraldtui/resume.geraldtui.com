@@ -309,8 +309,8 @@ body.print-page a {
   /* Zoom controls (screen only) */
   .zoom-controls {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    top: 20px;
+    left: 20px;
     z-index: 1000;
     display: flex;
     align-items: center;
