@@ -8,7 +8,7 @@
 <html lang="en"> <!--<![endif]-->
 {% include head.html %}
 
-<body>
+<body class="print-page">
   <button onclick="print()" class="print-button d-print-none">
     <i class="fas fa-file-pdf"></i>Print
   </button>
@@ -17,15 +17,13 @@
     <i class="fas fa-file-pdf"></i>PDF
   </button>
 
-  <div class="wrapper">
-    {% include sidebar.html %}
+  <div class="resume-wrapper">
+    {% include sidebar-print.html %}
 
     <div class="main-wrapper">
       {{ content }}
     </div>
   </div>
-
-  {% include footer.html %}
 
   {% include scripts.html %}
   <script src="{{ site.baseurl }}/assets/js/pdf-generator.js"></script>

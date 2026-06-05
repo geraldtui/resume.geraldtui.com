@@ -11,8 +11,9 @@
   <meta name="description" content="{{ site.description |default: "A beautiful
   Jekyll theme for creating resume" }}">
 
-  <!-- Favicon -->
-  <link rel="shortcut icon" href="favicon.ico">
+  <!-- Favicon (matches geraldtui.com) -->
+  <link rel="icon" type="image/svg+xml" href="{{ site.baseurl }}/assets/images/favicon.svg">
+  <link rel="mask-icon" href="{{ site.baseurl }}/assets/images/favicon.svg" color="#000000">
 
   <!-- Global CSS -->
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/plugins/bootstrap/css/bootstrap.css">
@@ -27,6 +28,9 @@
 
   <!-- Theme CSS -->
   <link id="theme-style" rel="stylesheet" href="{{ site.baseurl }}/assets/css/main.css">
+
+  <!-- Print / PDF CSS (scoped to .print-page; used for the /print page and PDF export) -->
+  <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/print.css">
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>

@@ -1,0 +1,7 @@
+{% assign references = site.data.data.sidebar.references %}
+{% if references %}
+<div class="references-container container-block">
+  <h2 class="container-block-title">{{ references.title }}</h2>
+  <p class="references-text">{{ references.text }}</p>
+</div><!--//references-container-->
+{% endif %}

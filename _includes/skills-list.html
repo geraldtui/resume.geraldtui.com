@@ -1,0 +1,11 @@
+{% assign skills = site.data.data.skills %}
+{% if skills and skills.list %}
+<div class="tools-container container-block">
+  <h2 class="container-block-title">{{ skills.title }}</h2>
+  <ul class="list-unstyled tools-list">
+    {% for tool in skills.list %}
+    <li>{{ tool }}</li>
+    {% endfor %}
+  </ul>
+</div><!--//tools-container-->
+{% endif %}

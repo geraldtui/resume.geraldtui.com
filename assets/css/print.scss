@@ -1,0 +1,329 @@
+---
+
+---
+
+@charset "utf-8";
+
+/* ===========================================================================
+   Print / PDF stylesheet — mirrors the GT Resume 2026 PDF layout.
+   Left sidebar (contact, education, tools, certs, references) + right main
+   column (career profile, work experience, extra-curricular, awards),
+   flowing across A4 pages with the divider running the full height.
+   =========================================================================== */
+
+$page-width: 210mm;
+$sidebar-width: 62mm;
+$accent: #1a1a1a;
+$grey: #777777;
+$divider: #e0e0e0;
+$body-pad: 12mm; // horizontal/bottom inset
+$body-pad-top: 4mm; // smaller; per-page vertical margin is handled by @page
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body.print-page {
+  margin: 0;
+  padding: 0;
+  background: #ffffff;
+  color: #333333;
+  font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.5px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body.print-page a {
+  color: $accent;
+  text-decoration: none;
+}
+
+.resume-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: $page-width;
+  margin: 0 auto;
+  background: #ffffff;
+}
+
+/* ---- Sidebar (always on the left) ---- */
+.resume-wrapper .sidebar-wrapper {
+  order: 1;
+  width: $sidebar-width;
+  flex: 0 0 $sidebar-width;
+  padding: $body-pad-top 8mm $body-pad $body-pad;
+  border-right: 1px solid $divider;
+  background: #ffffff;
+  color: #333333;
+
+  a {
+    color: $accent;
+    word-break: break-word;
+  }
+
+  .profile-container {
+    padding: 0;
+    text-align: center;
+    margin-bottom: 9mm;
+  }
+
+  .avatar {
+    display: block;
+    width: 34mm;
+    height: 34mm;
+    max-width: 100%;
+    margin: 0 auto 6mm;
+    border-radius: 50%;
+    object-fit: cover;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .name {
+    font-size: 19px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0 0 6px;
+    text-transform: uppercase;
+    color: $accent;
+  }
+
+  .tagline {
+    font-size: 11px;
+    font-weight: 400;
+    color: $grey;
+    margin: 0;
+  }
+
+  .container-block,
+  .contact-block,
+  .education-container,
+  .tools-container,
+  .certs-container,
+  .references-container {
+    padding: 0;
+    margin-bottom: 8mm;
+    break-inside: avoid;
+  }
+
+  .container-block-title {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin: 0 0 6px;
+    color: $accent;
+  }
+
+  .contact-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      margin-bottom: 5px;
+      font-size: 10px;
+      word-break: break-word;
+    }
+
+    .fas,
+    .fab,
+    .far {
+      margin-right: 5px;
+      width: 14px;
+      text-align: center;
+    }
+  }
+
+  .education-container {
+    .item {
+      margin-bottom: 7px;
+    }
+    .degree {
+      font-size: 11px;
+      font-weight: 700;
+      margin: 0;
+      color: $accent;
+    }
+    .meta {
+      font-size: 10px;
+      color: $grey;
+      margin: 0;
+      font-weight: 400;
+    }
+    .time {
+      font-size: 10px;
+      color: $grey;
+    }
+  }
+
+  .tools-list,
+  .certs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+      margin-bottom: 4px;
+      font-size: 10px;
+    }
+  }
+
+  .references-text {
+    font-size: 10px;
+    color: $grey;
+    margin: 0;
+  }
+}
+
+/* ---- Main column ---- */
+.resume-wrapper .main-wrapper {
+  order: 2;
+  flex: 1 1 auto;
+  padding: $body-pad-top $body-pad $body-pad 8mm;
+  background: #ffffff;
+
+  .section {
+    margin-bottom: 7mm;
+  }
+
+  .section-title {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    color: $accent;
+    margin: 0 0 8px;
+    border-bottom: 1px solid $divider;
+    padding-bottom: 3px;
+    break-after: avoid;
+    page-break-after: avoid; /* keep heading with its first item */
+
+    /* The web template wraps the icon in fa-stack; hide it for the clean PDF look */
+    .fa-stack {
+      display: none;
+    }
+  }
+
+  /* Start Extra-Curricular on a fresh page (page 3) so it sits together with
+     Awards & Prizes, and keep both sections intact (never clipped). */
+  .recommendations-section {
+    break-before: page;
+    page-break-before: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .publications-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .summary {
+    margin-bottom: 4mm;
+  }
+
+  .experiences-section .item {
+    margin-bottom: 6mm;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .upper-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1px;
+  }
+
+  .job-title {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: $accent;
+    margin: 0;
+  }
+
+  .time {
+    font-size: 10px;
+    color: $grey;
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+
+  .company {
+    font-size: 11px;
+    color: $grey;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .details {
+    p {
+      margin: 0 0 4px;
+    }
+    ul {
+      margin: 4px 0 0;
+      padding-left: 16px;
+    }
+    li {
+      margin-bottom: 3px;
+    }
+  }
+
+  /* Awards & prizes (publications) */
+  .publications-section .item {
+    margin-bottom: 4px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    li {
+      font-weight: 600;
+      list-style: disc;
+      margin-left: 16px;
+    }
+  }
+  .publication-authors {
+    font-style: italic;
+    color: $grey;
+    font-size: 10px;
+    margin: 0 0 2px 16px;
+  }
+}
+
+/* ---- Pagination for screen preview (visual page guides) ---- */
+@media screen {
+  body.print-page {
+    background: #e9e9e9;
+    padding: 20px 0;
+  }
+  .resume-wrapper {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  }
+}
+
+/* ---- Actual print rules ---- */
+/* Vertical page margin keeps content (incl. headings that land at the top of
+   pages 2 and 3) away from the paper edge on every page. */
+@page {
+  size: A4;
+  margin: 14mm 0;
+}
+
+@media print {
+  html,
+  body.print-page {
+    width: $page-width;
+  }
+  .resume-wrapper {
+    width: 100%;
+    box-shadow: none;
+  }
+  .print-button,
+  .pdf-button,
+  .d-print-none {
+    display: none !important;
+  }
+}

@@ -19,10 +19,10 @@ h6 {
 }
 
 a {
-  color: darken($theme-color, 15%);
+  color: $accent-color;
   &:hover {
     text-decoration: underline;
-    color: darken($theme-color, 30%);
+    color: lighten($accent-color, 25%);
   }
   &:focus {
     text-decoration: none;
@@ -47,16 +47,20 @@ p {
   grid-column: span 3;
   order: $sidebar-order;
   background: $theme-color;
-  color: #fff;
+  color: $text-color-secondary;
+  @if $sidebar-order == 1 {
+    border-right: 1px solid $divider;
+  } @else {
+    border-left: 1px solid $divider;
+  }
   a {
-    color: #fff;
+    color: $accent-color;
   }
   .profile-container {
     padding: 30px;
-    //background: darken($theme-color, 10%);
-    background: rgba(0, 0, 0, 0.2);
+    background: $theme-color;
     text-align: center;
-    color: #fff;
+    color: $text-color;
   }
   .name {
     font-size: 32px;
@@ -65,7 +69,7 @@ p {
     margin-bottom: 10px;
   }
   .tagline {
-    color: rgba(256, 256, 256, 0.6);
+    color: $text-grey;
     font-size: 16px;
     font-weight: 400;
     margin-top: 0;
@@ -121,20 +125,20 @@ p {
       }
     }
     .meta {
-      color: rgba(256, 256, 256, 0.6);
+      color: $text-grey;
       font-weight: 500;
       margin-bottom: 0px;
       margin-top: 0;
     }
     .time {
-      color: rgba(256, 256, 256, 0.6);
+      color: $text-grey;
       font-weight: 500;
       margin-bottom: 0px;
     }
   }
   .languages-container {
     .lang-desc {
-      color: rgba(256, 256, 256, 0.6);
+      color: $text-grey;
     }
   }
 
@@ -168,7 +172,7 @@ p {
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 500;
-    color: darken($theme-color, 15%);
+    color: $accent-color;
     position: relative;
     margin-top: 0;
     margin-bottom: 20px;
@@ -224,7 +228,7 @@ p {
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 5px;
-    color: darken($theme-color, 15%);
+    color: $accent-color;
   }
   .projects-section {
     .intro {
@@ -280,7 +284,7 @@ p {
   }
   .level-bar-inner {
     height: 12px;
-    background: lighten($theme-color, 15%);
+    background: $accent-color;
   }
 }
 
@@ -302,7 +306,7 @@ p {
   top: 20px;
   right: 120px; // Changed from 20px to make space for the PDF button
   z-index: 1000;
-  background: $theme-color;
+  background: $accent-color;
   color: #fff;
   padding: 8px 15px;
   border-radius: 4px;
@@ -313,7 +317,7 @@ p {
   transition: all 0.3s ease;
 
   &:hover {
-    background: darken($theme-color, 10%);
+    background: lighten($accent-color, 20%);
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
@@ -333,7 +337,7 @@ p {
   top: 20px;
   right: 20px;
   z-index: 1000;
-  background: $theme-color;
+  background: $accent-color;
   color: #fff;
   padding: 8px 15px;
   border-radius: 4px;
@@ -344,7 +348,7 @@ p {
   transition: all 0.3s ease;
 
   &:hover {
-    background: darken($theme-color, 10%);
+    background: lighten($accent-color, 20%);
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
