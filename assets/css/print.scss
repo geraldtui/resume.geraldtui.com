@@ -299,9 +299,67 @@ body.print-page a {
     background: #e9e9e9;
     padding: 20px 0;
   }
+  .zoom-viewport {
+    width: 100%;
+  }
   .resume-wrapper {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
   }
+
+  /* Zoom controls (screen only) */
+  .zoom-controls {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 8px;
+    background: $accent;
+    border-radius: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+
+  .zoom-button {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+    &:active {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  .zoom-level {
+    min-width: 44px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 600;
+    user-select: none;
+  }
+}
+
+/* The viewport is layout-transparent; zoom only affects screen rendering. */
+.zoom-viewport {
+  display: block;
 }
 
 /* ---- Actual print rules ---- */
@@ -317,12 +375,18 @@ body.print-page a {
   body.print-page {
     width: $page-width;
   }
+  /* Always print at 100% regardless of on-screen zoom level. */
+  .zoom-viewport {
+    height: auto !important;
+  }
   .resume-wrapper {
     width: 100%;
     box-shadow: none;
+    transform: none !important;
   }
   .print-button,
   .pdf-button,
+  .zoom-controls,
   .d-print-none {
     display: none !important;
   }
