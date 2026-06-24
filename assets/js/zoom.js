@@ -31,24 +31,26 @@
   var zoom = readStored();
 
   function apply() {
-    var effective = zoom * BASE_SCALE;
-    
-    // On mobile (narrow screens), use "top left" origin so zoomed content
-    // starts from the left edge, making horizontal scrolling more intuitive.
-    // On desktop, use "top center" for centered zoom.
     var isMobile = window.innerWidth <= 900;
-    wrapper.style.transformOrigin = isMobile ? "top left" : "top center";
+    
+    // On mobile, don't apply zoom - let users use native pinch-to-zoom instead
+    if (isMobile) {
+      wrapper.style.transform = "none";
+      if (viewport) {
+        viewport.style.height = "auto";
+      }
+      return;
+    }
+    
+    // Desktop: apply zoom transform
+    var effective = zoom * BASE_SCALE;
+    wrapper.style.transformOrigin = "top center";
     wrapper.style.transform = "scale(" + effective + ")";
 
     // Reserve layout space so scaled content doesn't overlap the page,
     // keeping scrollbars correct at any zoom level.
     if (viewport) {
       viewport.style.height = wrapper.offsetHeight * effective + "px";
-      // On mobile with left-aligned zoom, ensure viewport width accommodates scaled content
-      if (isMobile) {
-        viewport.style.width = "100%";
-        viewport.style.overflowX = "auto";
-      }
     }
 
     if (label) {

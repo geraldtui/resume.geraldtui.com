@@ -336,6 +336,7 @@ body.print-page a {
   }
   .zoom-viewport {
     width: 100%;
+    overflow-x: auto; /* Allow horizontal scroll when zoomed content is wider than viewport */
   }
   .resume-wrapper {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
@@ -391,26 +392,20 @@ body.print-page a {
     user-select: none;
   }
 
-  /* Mobile responsive: adjust resume width to fit smaller screens */
+  /* Hide zoom controls on mobile - allow native pinch-to-zoom instead */
   @media (max-width: 900px) {
-    body.print-page {
-      padding: 10px 0;
+    .zoom-controls {
+      display: none !important;
     }
+    
+    /* Remove zoom transform on mobile so native pinch-to-zoom works */
     .resume-wrapper {
-      width: 95%;
-      max-width: $page-width;
-      min-width: 320px;
+      transform: none !important;
     }
-  }
-
-  /* Extra small devices: ensure content doesn't get too cramped */
-  @media (max-width: 480px) {
-    body.print-page {
-      padding: 5px 0;
-    }
-    .resume-wrapper {
-      width: 98%;
-      font-size: 9px;
+    
+    /* Reset viewport height on mobile */
+    .zoom-viewport {
+      height: auto !important;
     }
   }
 }
@@ -418,8 +413,6 @@ body.print-page a {
 /* The viewport is layout-transparent; zoom only affects screen rendering. */
 .zoom-viewport {
   display: block;
-  overflow-x: auto; /* Allow horizontal scroll when zoomed content is wider than viewport */
-  overflow-y: visible;
 }
 
 /* ---- Actual print rules ---- */
