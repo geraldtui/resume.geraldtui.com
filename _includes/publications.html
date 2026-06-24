@@ -16,17 +16,35 @@
   </div><!--//intro-->
   {% endif %}
 
-  {% for publication in publications.papers %}
-  <div class="item">
-    {% if publication.link %}
-      <li><a href="{{ publication.link }}">{{ publication.title }}</a></li>
-    {% else %}
-      <li>{{ publication.title }}</li>
-    {% endif %}
-    <div class="publication-authors">{{ publication.authors }}</div>
-    <div class="publication-conference">{{ publication.conference }}</div>
-  </div><!--//item-->
-  {% endfor %}
+  {% if publications.subsections %}
+    {% for subsection in publications.subsections %}
+    <div class="publication-subsection">
+      <p class="publication-subsection-title">{{ subsection.title }}</p>
+      <ul class="publication-subsection-items">
+        {% for item in subsection.items %}
+        <li>{{ item }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if publications.papers %}
+  <ul class="publications-list">
+    {% for publication in publications.papers %}
+    <li class="publication-line">
+      {% if publication.link %}
+        <a href="{{ publication.link }}">{{ publication.title }}</a>
+      {% else %}
+        {{ publication.title }}
+      {% endif %}
+      {% if publication.description %}
+      <div class="publication-authors">{{ publication.description }}</div>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
 
 </section><!--//section-->
 {% endif %}

@@ -275,21 +275,56 @@ body.print-page a {
   }
 
   /* Awards & prizes (publications) */
-  .publications-section .item {
-    margin-bottom: 4px;
-    break-inside: avoid;
-    page-break-inside: avoid;
-    li {
-      font-weight: 600;
+  .publications-section {
+    .publications-list {
       list-style: disc;
-      margin-left: 16px;
+      margin: 4px 0 0;
+      padding-left: 16px;
+
+      > li {
+        margin-bottom: 3px;
+        font-size: inherit;
+        line-height: inherit;
+      }
     }
-  }
-  .publication-authors {
-    font-style: italic;
-    color: $grey;
-    font-size: 10px;
-    margin: 0 0 2px 16px;
+
+    .publication-line {
+      margin-bottom: 3px;
+    }
+
+    .publication-subsection {
+      margin-bottom: 4px;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .publication-subsection-title {
+      font-weight: 700;
+      font-size: inherit;
+      line-height: inherit;
+      color: $accent;
+      margin: 3px 0 2px;
+    }
+
+    .publication-subsection-items {
+      list-style: circle;
+      margin: 2px 0 0;
+      padding-left: 16px;
+
+      li {
+        margin-bottom: 2px;
+        font-size: inherit;
+        line-height: inherit;
+      }
+    }
+
+    .publication-authors {
+      margin: 2px 0 0;
+      font-style: normal;
+      color: inherit;
+      font-size: inherit;
+      line-height: inherit;
+    }
   }
 }
 
@@ -389,5 +424,13 @@ body.print-page a {
   .zoom-controls,
   .d-print-none {
     display: none !important;
+  }
+  /* Hide profile picture when printing */
+  .avatar {
+    display: none !important;
+  }
+  /* Reduce spacing to push content upward when avatar is hidden */
+  .profile-container {
+    margin-bottom: 3mm !important;
   }
 }

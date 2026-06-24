@@ -10,11 +10,7 @@
 
 <body class="print-page">
   <button onclick="print()" class="print-button d-print-none">
-    <i class="fas fa-file-pdf"></i>Print
-  </button>
-
-  <button onclick="generatePDF()" class="pdf-button d-print-none" id="pdfButton">
-    <i class="fas fa-file-pdf"></i>PDF
+    <i class="fas fa-print"></i>Print
   </button>
 
   <div class="zoom-controls d-print-none" role="group" aria-label="Zoom controls">
@@ -38,7 +34,6 @@
   </div>
 
   {% include scripts.html %}
-  <script src="{{ site.baseurl }}/assets/js/pdf-generator.js"></script>
   <script src="{{ site.baseurl }}/assets/js/zoom.js"></script>
 </body>
 
